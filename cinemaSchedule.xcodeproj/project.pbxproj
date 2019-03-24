@@ -13,7 +13,11 @@
 		D729E4D1223C75F700B85005 /* cinemaSchedule.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D729E4CF223C75F700B85005 /* cinemaSchedule.xcdatamodeld */; };
 		D729E4D3223C75F800B85005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D729E4D2223C75F800B85005 /* Assets.xcassets */; };
 		D729E4D6223C75F800B85005 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D729E4D4223C75F800B85005 /* LaunchScreen.storyboard */; };
-		D729E4E22240514B00B85005 /* MainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729E4E12240514B00B85005 /* MainCollectionViewController.swift */; };
+		D77598722246E98C004021D3 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77598712246E98C004021D3 /* MovieViewController.swift */; };
+		D77598782246EB3F004021D3 /* OsVingadores2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D77598772246EB3F004021D3 /* OsVingadores2.jpg */; };
+		D77598802246F844004021D3 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775987F2246F844004021D3 /* MovieCollectionViewCell.swift */; };
+		D77598822246F9F1004021D3 /* CinemaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77598812246F9F1004021D3 /* CinemaViewController.swift */; };
+		D77598842246FF5C004021D3 /* CinemaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77598832246FF5C004021D3 /* CinemaCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +29,11 @@
 		D729E4D2223C75F800B85005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D729E4D5223C75F800B85005 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D729E4D7223C75F800B85005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D729E4E12240514B00B85005 /* MainCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewController.swift; sourceTree = "<group>"; };
+		D77598712246E98C004021D3 /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
+		D77598772246EB3F004021D3 /* OsVingadores2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = OsVingadores2.jpg; sourceTree = "<group>"; };
+		D775987F2246F844004021D3 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		D77598812246F9F1004021D3 /* CinemaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaViewController.swift; sourceTree = "<group>"; };
+		D77598832246FF5C004021D3 /* CinemaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,9 +93,10 @@
 		D729E4DF2240504D00B85005 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D77598812246F9F1004021D3 /* CinemaViewController.swift */,
+				D77598712246E98C004021D3 /* MovieViewController.swift */,
 				D729E4CA223C75F700B85005 /* ViewController.swift */,
 				D729E4C8223C75F700B85005 /* AppDelegate.swift */,
-				D729E4E12240514B00B85005 /* MainCollectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -95,11 +104,30 @@
 		D729E4E02240508E00B85005 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D77598832246FF5C004021D3 /* CinemaCollectionViewCell.swift */,
+				D775987F2246F844004021D3 /* MovieCollectionViewCell.swift */,
+				D77598752246EB26004021D3 /* assets */,
 				D729E4CC223C75F700B85005 /* Main.storyboard */,
 				D729E4D2223C75F800B85005 /* Assets.xcassets */,
 				D729E4D4223C75F800B85005 /* LaunchScreen.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D77598752246EB26004021D3 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				D77598762246EB2E004021D3 /* images */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		D77598762246EB2E004021D3 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				D77598772246EB3F004021D3 /* OsVingadores2.jpg */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +190,7 @@
 			files = (
 				D729E4D6223C75F800B85005 /* LaunchScreen.storyboard in Resources */,
 				D729E4D3223C75F800B85005 /* Assets.xcassets in Resources */,
+				D77598782246EB3F004021D3 /* OsVingadores2.jpg in Resources */,
 				D729E4CE223C75F700B85005 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -174,9 +203,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D729E4D1223C75F700B85005 /* cinemaSchedule.xcdatamodeld in Sources */,
-				D729E4E22240514B00B85005 /* MainCollectionViewController.swift in Sources */,
 				D729E4CB223C75F700B85005 /* ViewController.swift in Sources */,
+				D77598802246F844004021D3 /* MovieCollectionViewCell.swift in Sources */,
 				D729E4C9223C75F700B85005 /* AppDelegate.swift in Sources */,
+				D77598722246E98C004021D3 /* MovieViewController.swift in Sources */,
+				D77598842246FF5C004021D3 /* CinemaCollectionViewCell.swift in Sources */,
+				D77598822246F9F1004021D3 /* CinemaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

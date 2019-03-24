@@ -10,40 +10,50 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController {
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
+    @IBOutlet weak var movieCollectionView: UICollectionView!
+    @IBOutlet weak var cinemaCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        movieCollectionView.delegate = self
+        cinemaCollectionView.delegate = self
         
-        let movies = Movies(context: context)
+        movieCollectionView.dataSource = self
+        cinemaCollectionView.dataSource = self
         
-        movies.id       = UUID()
-        movies.name     = "LOTR - Lord of The Rings"
-        movies.director = "Peter Jackson"
-        movies.year     = 2001
-        movies.type     = "Fantasy"
-        
-        do {
-            try context.save()
-        } catch {
-            print("Ocorreu algum erro: \(error)")
-        }
-        
-        var listMovies : [Movies] = []
-        let requisition : NSFetchRequest<Movies> = Movies.fetchRequest()
-        
-        do {
-            listMovies = try context.fetch(requisition)
-            
-        } catch {
-            print("Ocorreu algum erro ao buscar: \(error)")
-        }
-        
-        print(listMovies)
-        
+//        self.view.addSubview(movieCollectionView)
+//        self.view.addSubview(cinemaCollectionView)
         
     }
 
-
 }
 
+extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if collectionView == self.movieCollectionView {
+            return 10
+        } else if collectionView == self.cinemaCollectionView {
+            return 5
+        } else {
+            return 10
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if collectionView == self.movieCollectionView {
+            let movieCell = movieCollectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCollectionViewCell
+            movieCell?.movieTitle.text = "Movie \(indexPath.row)"
+            return movieCell!
+        } else {
+            let cinemaCell = movieCollectionView.dequeueReusableCell(withReuseIdentifier: "cinemaCell", for: indexPath) as? CinemaCollectionViewCell
+            cinemaCell?.titleCinema.text = "Cine \(indexPath.row)"
+            return cinemaCell!
+        }
+        
+    }
+    
+    
+}
