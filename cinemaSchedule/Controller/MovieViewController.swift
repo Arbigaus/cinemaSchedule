@@ -9,11 +9,12 @@
 import UIKit
 
 class MovieViewController: UIViewController {
-
+    var t : String = "Filmes"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.title = t
+        
     }
     
 

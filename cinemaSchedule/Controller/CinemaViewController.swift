@@ -9,11 +9,12 @@
 import UIKit
 
 class CinemaViewController: UIViewController {
+    var n : String = "Cinemas"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.title = n
+        
     }
     
 
