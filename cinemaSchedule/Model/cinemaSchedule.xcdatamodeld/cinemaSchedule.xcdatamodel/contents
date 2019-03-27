@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Cinema" representedClassName=".Cinema" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CinemaAddress" inverseName="cinema" inverseEntity="CinemaAddress" syncable="YES"/>
         <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sessions" inverseName="cinema" inverseEntity="Sessions" syncable="YES"/>
@@ -14,9 +13,10 @@
         <relationship name="cinema" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cinema" inverseName="address" inverseEntity="Cinema" syncable="YES"/>
     </entity>
     <entity name="Movies" representedClassName=".Movies" syncable="YES" codeGenerationType="class">
+        <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="director" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -24,15 +24,14 @@
     </entity>
     <entity name="Sessions" representedClassName=".Sessions" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="room" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="cinema" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cinema" inverseName="sessions" inverseEntity="Cinema" syncable="YES"/>
         <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movies" inverseName="sessions" inverseEntity="Movies" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Cinema" positionX="-9" positionY="54" width="128" height="105"/>
+        <element name="Cinema" positionX="-9" positionY="54" width="128" height="90"/>
         <element name="CinemaAddress" positionX="18" positionY="90" width="128" height="120"/>
-        <element name="Movies" positionX="-9" positionY="36" width="128" height="150"/>
-        <element name="Sessions" positionX="0" positionY="72" width="128" height="120"/>
+        <element name="Movies" positionX="-9" positionY="36" width="128" height="163"/>
+        <element name="Sessions" positionX="0" positionY="72" width="128" height="105"/>
     </elements>
 </model>

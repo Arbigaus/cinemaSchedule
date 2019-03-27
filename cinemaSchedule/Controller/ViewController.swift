@@ -11,12 +11,17 @@ import CoreData
 
 class ViewController: UIViewController {
     var index : Int? = nil
+    var moviesList = [ Movies ]()
+    var movieToSend : Movies?
 
     @IBOutlet weak var movieCollectionView: UICollectionView!
     @IBOutlet weak var cinemaCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        let movies = MovieModelView()
+        self.moviesList = movies.getMovies()
         
     }
     
@@ -30,6 +35,8 @@ class ViewController: UIViewController {
         
         movieCollectionView.dataSource = self
         cinemaCollectionView.dataSource = self
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -43,7 +50,7 @@ extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == self.movieCollectionView {
-            return 10
+            return self.moviesList.count
         } else if collectionView == self.cinemaCollectionView {
             return 5
         } else {
@@ -54,19 +61,23 @@ extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == self.movieCollectionView {
-            let movieCell = movieCollectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCollectionViewCell
-            movieCell?.movieTitle.text = "Movie \(indexPath.row + 1)"
+            let movieCell = movieCollectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? FirstMovieCollectionViewCell
+            
+            movieCell?.movieImage.image = UIImage(named: moviesList[indexPath.row].image!)
+            
             return movieCell!
         } else {
-            let cinemaCell = cinemaCollectionView.dequeueReusableCell(withReuseIdentifier: "cinemaCell", for: indexPath) as? CinemaCollectionViewCell
+            let cinemaCell = cinemaCollectionView.dequeueReusableCell(withReuseIdentifier: "cinemaCell", for: indexPath) as? FirstCinemaCollectionViewCell
+            
             cinemaCell?.titleCinema.text = "Cine \(indexPath.row + 1)"
+            
             return cinemaCell!
         }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.index = indexPath.row + 1
+        self.movieToSend = moviesList[indexPath.row]
         
         if collectionView == self.movieCollectionView {
             performSegue(withIdentifier: "goToMovieView", sender: self)
@@ -80,10 +91,10 @@ extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToMovieView" {
             let vc : MovieViewController = segue.destination as! MovieViewController
-            vc.t = "Filme \(self.index!)"
+            vc.movie = self.movieToSend
         } else if segue.identifier == "goToCinemaView"{
             let vc : CinemaViewController = segue.destination as! CinemaViewController
-            vc.n = "Cinema \(self.index!)"
+            
         }
     }
 }

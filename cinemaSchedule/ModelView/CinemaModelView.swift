@@ -1,5 +1,5 @@
 //
-//  CinemaCollectionViewCell.swift
+//  CinemaModelView.swift
 //  cinemaSchedule
 //
 //  Created by Gerson Arbrugaus on 27/03/19.
@@ -7,7 +7,8 @@
 //
 
 import UIKit
+import CoreData
 
-class CinemaCollectionViewCell: UICollectionViewCell {
-    
+class CinemaModelView  {
+
 }
