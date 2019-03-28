@@ -27,6 +27,8 @@
 		D7FA2AFF224B14AC00F183A0 /* hp1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D7FA2AFE224B14AC00F183A0 /* hp1.jpg */; };
 		D7FA2B01224C27EF00F183A0 /* CinemaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FA2B00224C27EF00F183A0 /* CinemaCollectionViewCell.swift */; };
 		D7FA2B03224C305900F183A0 /* CinemaModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FA2B02224C305900F183A0 /* CinemaModelView.swift */; };
+		D7FA2B05224C36F900F183A0 /* imax-logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D7FA2B04224C36F900F183A0 /* imax-logo.jpg */; };
+		D7FA2B07224C380500F183A0 /* cinemark.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D7FA2B06224C380500F183A0 /* cinemark.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		D7FA2AFE224B14AC00F183A0 /* hp1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hp1.jpg; sourceTree = "<group>"; };
 		D7FA2B00224C27EF00F183A0 /* CinemaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaCollectionViewCell.swift; sourceTree = "<group>"; };
 		D7FA2B02224C305900F183A0 /* CinemaModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaModelView.swift; sourceTree = "<group>"; };
+		D7FA2B04224C36F900F183A0 /* imax-logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "imax-logo.jpg"; sourceTree = "<group>"; };
+		D7FA2B06224C380500F183A0 /* cinemark.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cinemark.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,8 @@
 		D77598762246EB2E004021D3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				D7FA2B06224C380500F183A0 /* cinemark.jpg */,
+				D7FA2B04224C36F900F183A0 /* imax-logo.jpg */,
 				D7FA2AFE224B14AC00F183A0 /* hp1.jpg */,
 				D7FA2AFC224B12D600F183A0 /* lotr2.jpg */,
 				D775988B22472716004021D3 /* movieSchedule.png */,
@@ -215,7 +221,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7FA2B07224C380500F183A0 /* cinemark.jpg in Resources */,
 				D729E4D6223C75F800B85005 /* LaunchScreen.storyboard in Resources */,
+				D7FA2B05224C36F900F183A0 /* imax-logo.jpg in Resources */,
 				D775988C22472716004021D3 /* movieSchedule.png in Resources */,
 				D77598782246EB3F004021D3 /* OsVingadores2.jpg in Resources */,
 				D775988A224726D9004021D3 /* Assets.xcassets in Resources */,

@@ -10,9 +10,6 @@ import UIKit
 
 class MovieViewController: UIViewController {
     var movie : Movies?
-    var t : String    = ""
-    var time : Int = 0
-    var age : Int  = 0
     
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieTime: UILabel!
@@ -21,11 +18,11 @@ class MovieViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = t
+        self.title = movie?.title
         
-        movieTitle.text = movie?.title
-        movieTime.text  = String(movie!.time)
-        movieAge.text   = String(16)
+        movieTitle.text  = movie?.title
+        movieTime.text   = "\(String(movie!.time)) minutos"
+        movieAge.text    = String(16)
         movieImage.image = UIImage(named: movie!.image!)
         
     }

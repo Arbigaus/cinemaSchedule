@@ -10,30 +10,61 @@ import UIKit
 import MapKit
 
 class CinemaViewController: UIViewController {
-    var n : String = "Cinemas"
-    var address : String = ""
+    var cinema : Cinema?
+    let lm = CLLocationManager()
+    static let geocoder = CLGeocoder()
 
     @IBOutlet weak var cinemaName: UILabel!
     @IBOutlet weak var cinemaAddress: UILabel!
     @IBOutlet weak var cinemaMap: MKMapView!
+    @IBOutlet weak var cinemaCep: UILabel!
     
     let startLocation = CLLocation(latitude: -25.451389, longitude: -49.251667)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = n
+        self.title = cinema?.name
         
-        cinemaName.text = n
-        cinemaAddress.text = address
+        var cep = String(cinema!.address!.cep)
+        let cineAddress = "\(cinema!.address!.street!), \(cinema!.address!.number)"
         
-        cinemaMap.mapType = .standard
-        let span   = MKCoordinateSpan(latitudeDelta: 0.0275, longitudeDelta: 0.0275)  // trazer nome da cidade
-        let region = MKCoordinateRegion(center: startLocation.coordinate, span: span)  // define onde e o span para mostrar a regiao
+        cep.insert("-", at: cep.index(cep.endIndex, offsetBy: -3) )
         
-        cinemaMap.setRegion(region, animated: true)
+        cinemaName.text = cinema?.name
+        cinemaAddress.text = cineAddress
+        cinemaCep.text = "CEP: \(cep)"
+        
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let cineAddress = "\(cinema!.address!.street!), \(cinema!.address!.number)"
+        self.setMap(address: cineAddress)
+    }
+    
+    private func setMap(address: String){
+        CinemaViewController.geocoder.geocodeAddressString(address) { (placemarks, error) in
+            
+            if error != nil {
+                print("Erro")
+            } else if let placemarks = placemarks {
+                
+                if let coordinate = placemarks.first?.location?.coordinate {
+                    self.cinemaMap.mapType = .standard
+                    let span   = MKCoordinateSpan(latitudeDelta: 0.0175, longitudeDelta: 0.0175)  // trazer nome da cidade
+                    let region = MKCoordinateRegion(center: coordinate, span: span)  // define onde e o span para mostrar a regiao
+                    
+                    self.cinemaMap.setRegion(region, animated: false)
+                    
+                    let anotacao = MKPointAnnotation()
+                    anotacao.coordinate = coordinate
+                    anotacao.title = self.cinema?.name
+                    self.cinemaMap.addAnnotation(anotacao)
+                    
+                }
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation

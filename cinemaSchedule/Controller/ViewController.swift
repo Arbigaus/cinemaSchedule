@@ -13,16 +13,15 @@ class ViewController: UIViewController {
     var index : Int? = nil
     var moviesList = [ Movies ]()
     var movieToSend : Movies?
+    
+    var cinemaList = [ Cinema ]()
+    var cinemaToSend : Cinema?
 
     @IBOutlet weak var movieCollectionView: UICollectionView!
     @IBOutlet weak var cinemaCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        let movies = MovieModelView()
-        self.moviesList = movies.getMovies()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +35,10 @@ class ViewController: UIViewController {
         movieCollectionView.dataSource = self
         cinemaCollectionView.dataSource = self
         
+        let movies = MovieModelView()
+        let cinemas = CinemaModelView()
+        self.moviesList = movies.getMovies()        
+        self.cinemaList = cinemas.getCinemas()
         
     }
     
@@ -52,7 +55,7 @@ extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
         if collectionView == self.movieCollectionView {
             return self.moviesList.count
         } else if collectionView == self.cinemaCollectionView {
-            return 5
+            return self.cinemaList.count
         } else {
             return 0
         }
@@ -69,7 +72,8 @@ extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
         } else {
             let cinemaCell = cinemaCollectionView.dequeueReusableCell(withReuseIdentifier: "cinemaCell", for: indexPath) as? FirstCinemaCollectionViewCell
             
-            cinemaCell?.titleCinema.text = "Cine \(indexPath.row + 1)"
+            cinemaCell?.titleCinema.text = cinemaList[indexPath.row].name
+            cinemaCell?.cinemaImage.image = UIImage(named: cinemaList[indexPath.row].image!)
             
             return cinemaCell!
         }
@@ -77,13 +81,14 @@ extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.movieToSend = moviesList[indexPath.row]
         
         if collectionView == self.movieCollectionView {
+            self.movieToSend = moviesList[indexPath.row]
             performSegue(withIdentifier: "goToMovieView", sender: self)
         }
         
         if collectionView == self.cinemaCollectionView {
+            self.cinemaToSend = cinemaList[indexPath.row]
             performSegue(withIdentifier: "goToCinemaView", sender: self)
         }
     }
@@ -94,6 +99,7 @@ extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
             vc.movie = self.movieToSend
         } else if segue.identifier == "goToCinemaView"{
             let vc : CinemaViewController = segue.destination as! CinemaViewController
+            vc.cinema = self.cinemaToSend
             
         }
     }

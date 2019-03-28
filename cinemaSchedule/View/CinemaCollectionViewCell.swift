@@ -10,4 +10,6 @@ import UIKit
 
 class CinemaCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var cinemaImage: UIImageView!
+    @IBOutlet weak var cinemaName: UILabel!
 }

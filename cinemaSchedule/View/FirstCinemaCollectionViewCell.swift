@@ -10,5 +10,5 @@ import UIKit
 
 class FirstCinemaCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleCinema: UILabel!
-    
+    @IBOutlet weak var cinemaImage: UIImageView!
 }
