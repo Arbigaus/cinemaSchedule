@@ -28,6 +28,8 @@ class CinemaCollectionViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         let cinemas = CinemaModelView()
         self.cinemaList = cinemas.getCinemas()
+        
+        self.collectionView.reloadData()
     }
 
     // MARK: UICollectionViewDataSource
@@ -46,7 +48,17 @@ class CinemaCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cinemaCell", for: indexPath) as! CinemaCollectionViewCell
         
-        cell.cinemaImage.image = UIImage(named: self.cinemaList[indexPath.row].image!)
+        // Cria a url usando o path
+        let urlImage = URL(string: self.cinemaList[indexPath.row].image!)
+        
+        // faz download dos bytes da img
+        let bytes = try? Data(contentsOf: urlImage!)
+        var image : UIImage? = nil
+        if bytes != nil {
+            image = UIImage(data: bytes!)
+            cell.cinemaImage.image = image
+        }
+        
         cell.cinemaName.text = self.cinemaList[indexPath.row].name!
         return cell
     }

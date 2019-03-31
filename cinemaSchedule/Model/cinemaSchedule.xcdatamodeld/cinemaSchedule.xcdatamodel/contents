@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Cinema" representedClassName=".Cinema" syncable="YES" codeGenerationType="class">
-        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CinemaAddress" inverseName="cinema" inverseEntity="CinemaAddress" syncable="YES"/>
-        <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sessions" inverseName="cinema" inverseEntity="Sessions" syncable="YES"/>
-    </entity>
     <entity name="CinemaAddress" representedClassName=".CinemaAddress" syncable="YES" codeGenerationType="class">
         <attribute name="cep" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="cinema" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cinema" inverseName="address" inverseEntity="Cinema" syncable="YES"/>
+        <attribute name="uf" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="cinema" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cinemas" inverseName="address" inverseEntity="Cinemas" syncable="YES"/>
+    </entity>
+    <entity name="Cinemas" representedClassName=".Cinema" syncable="YES" codeGenerationType="class">
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="site" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CinemaAddress" inverseName="cinema" inverseEntity="CinemaAddress" syncable="YES"/>
+        <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sessions" inverseName="cinema" inverseEntity="Sessions" syncable="YES"/>
     </entity>
     <entity name="Movies" representedClassName=".Movies" syncable="YES" codeGenerationType="class">
         <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -24,13 +27,13 @@
     </entity>
     <entity name="Sessions" representedClassName=".Sessions" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="room" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="cinema" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cinema" inverseName="sessions" inverseEntity="Cinema" syncable="YES"/>
+        <attribute name="room" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="cinema" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cinemas" inverseName="sessions" inverseEntity="Cinemas" syncable="YES"/>
         <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movies" inverseName="sessions" inverseEntity="Movies" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Cinema" positionX="-9" positionY="54" width="128" height="103"/>
-        <element name="CinemaAddress" positionX="18" positionY="90" width="128" height="103"/>
+        <element name="CinemaAddress" positionX="18" positionY="90" width="128" height="133"/>
+        <element name="Cinemas" positionX="-9" positionY="54" width="128" height="120"/>
         <element name="Movies" positionX="-9" positionY="36" width="128" height="163"/>
         <element name="Sessions" positionX="0" positionY="72" width="128" height="105"/>
     </elements>

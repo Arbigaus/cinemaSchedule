@@ -35,10 +35,23 @@ class ViewController: UIViewController {
         movieCollectionView.dataSource = self
         cinemaCollectionView.dataSource = self
         
-        let movies = MovieModelView()
+        let movies  = MovieModelView()
         let cinemas = CinemaModelView()
         self.moviesList = movies.getMovies()        
         self.cinemaList = cinemas.getCinemas()
+        
+        if self.moviesList.count < 1 {
+            movies.insertFirstMovies()
+            self.moviesList = movies.getMovies()
+        }
+        
+        if self.cinemaList.count < 1 {
+            cinemas.createFirstCinemas()
+            self.cinemaList = cinemas.getCinemas()
+        }
+        
+        self.cinemaCollectionView.reloadData()
+        self.movieCollectionView.reloadData()
         
     }
     
@@ -49,7 +62,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == self.movieCollectionView {
@@ -66,14 +79,34 @@ extension ViewController:UICollectionViewDelegate, UICollectionViewDataSource {
         if collectionView == self.movieCollectionView {
             let movieCell = movieCollectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? FirstMovieCollectionViewCell
             
-            movieCell?.movieImage.image = UIImage(named: moviesList[indexPath.row].image!)
+            // Cria a url usando o path
+            let urlImage = URL(string: self.moviesList[indexPath.row].image!)
+            
+            // faz download dos bytes da img
+            let bytes = try? Data(contentsOf: urlImage!)
+            var image : UIImage? = nil
+            if bytes != nil {
+                image = UIImage(data: bytes!)
+                movieCell?.movieImage.image = image
+            }
+            
             
             return movieCell!
         } else {
             let cinemaCell = cinemaCollectionView.dequeueReusableCell(withReuseIdentifier: "cinemaCell", for: indexPath) as? FirstCinemaCollectionViewCell
             
             cinemaCell?.titleCinema.text = cinemaList[indexPath.row].name
-            cinemaCell?.cinemaImage.image = UIImage(named: cinemaList[indexPath.row].image!)
+            
+            // Cria a url usando o path
+            let urlImage = URL(string: self.cinemaList[indexPath.row].image!)
+            
+            // faz download dos bytes da img
+            let bytes = try? Data(contentsOf: urlImage!)
+            var image : UIImage? = nil
+            if bytes != nil {
+                image = UIImage(data: bytes!)
+                cinemaCell?.cinemaImage.image = image
+            }
             
             return cinemaCell!
         }

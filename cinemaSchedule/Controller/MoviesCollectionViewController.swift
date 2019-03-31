@@ -46,8 +46,18 @@ class MoviesCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell1", for: indexPath) as? MovieCollectionViewCell
-    
-        cell?.movieImage.image = UIImage(named: moviesList[indexPath.row].image!)
+        
+        // Cria a url usando o path
+        let urlImage = URL(string: self.moviesList[indexPath.row].image!)
+        
+        // faz download dos bytes da img
+        let bytes = try? Data(contentsOf: urlImage!)
+        
+        if bytes != nil {
+            let image = UIImage(data: bytes!)
+            cell?.movieImage.image = image
+        }
+        
         
         return cell!
     }
